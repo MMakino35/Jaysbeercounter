@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JayRho’s Beer Counter</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f6f6f6;
+      color: #111;
+    }
+
+    .wrap {
+      text-align: center;
+      padding: 24px;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      font-size: 2rem;
+    }
+
+    button {
+      border: none;
+      background: #e60000;
+      color: white;
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding: 18px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+
+    button:active {
+      transform: translateY(2px);
+      filter: brightness(0.9);
+    }
+
+    .counter {
+      margin-top: 20px;
+      font-size: 1.4rem;
+    }
+
+    .counter span {
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>JayRho’s Beer Counter</h1>
+
+    <button id="beerBtn">🍺 Add a beer</button>
+
+    <div class="counter">
+      Beers in 2026: <span id="count">0</span>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "jayrhosBeerCount2026";
+
+    let beers = parseInt(localStorage.getItem(STORAGE_KEY)) || 0;
+
+    const countEl = document.getElementById("count");
+    const btn = document.getElementById("beerBtn");
+
+    countEl.textContent = beers;
+
+    btn.addEventListener("click", () => {
+      beers += 1;
+      countEl.textContent = beers;
+      localStorage.setItem(STORAGE_KEY, beers);
+    });
+  </script>
+</body>
+</html>
